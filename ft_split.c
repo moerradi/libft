@@ -33,7 +33,7 @@ static size_t	count_words(char const *str, char c)
 	return (wc);
 }
 
-static char		**ft_garbage(char ***s, size_t idx)
+static char	**ft_garbage(char ***s, size_t idx)
 {
 	char	**splitout;
 	size_t	i;
@@ -50,7 +50,7 @@ static char		**ft_garbage(char ***s, size_t idx)
 	return (splitout);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char			**out;
 	size_t			i;
@@ -59,7 +59,8 @@ char			**ft_split(char const *s, char c)
 
 	i = 0;
 	start = 0;
-	if (s == NULL || !(out = malloc(sizeof(char*) * (count_words(s, c) + 1))))
+	out = malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (s == NULL || !out)
 		return (NULL);
 	while (i < count_words(s, c))
 	{
@@ -68,7 +69,8 @@ char			**ft_split(char const *s, char c)
 		len = 0;
 		while (s[len + start] && s[len + start] != c)
 			len++;
-		if (!(out[i++] = ft_substr(s, start, len)))
+		out[i] = ft_substr(s, start, len);
+		if (!out[i++])
 			return (ft_garbage(&out, i - 1));
 		start += len;
 	}

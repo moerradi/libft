@@ -14,8 +14,8 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned int last;
-	unsigned int temp;
+	unsigned int	last;
+	unsigned int	temp;
 
 	temp = n;
 	if (n < 0)

@@ -12,9 +12,17 @@
 
 #include "libft.h"
 
+static int	ternary(int condition, int if_true, int if_false)
+{
+	if (condition)
+		return (if_true);
+	else
+		return (if_false);
+}
+
 static size_t	ft_numlen(int n)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	while (n)
@@ -25,19 +33,21 @@ static size_t	ft_numlen(int n)
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*out;
 	size_t			numlen;
 	size_t			i;
 	unsigned int	ntemp;
 
-	ntemp = (n > 0) ? n : n * -1;
+	ntemp = ternary((n > 0), n, n * -1);
 	i = 0;
-	numlen = (n > 0) ? ft_numlen(n) : ft_numlen(n) + 1;
-	if (!(out = malloc(sizeof(char) * (numlen + 1))))
+	numlen = ft_numlen(n);
+	numlen += ternary((n > 0), ft_numlen(n), ft_numlen(n) + 1);
+	out = malloc(sizeof(char) * (numlen + 1));
+	if (!out)
 		return (NULL);
-	out[0] = (n >= 0) ? '0' : '-';
+	out[0] = (char) ternary((n >= 0), '0', '-');
 	while (ntemp)
 	{
 		out[numlen - i - 1] = (ntemp % 10) + '0';

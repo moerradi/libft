@@ -33,10 +33,10 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 $(OBJS): $(SRC)
-	$(CC) -c $(CFLAGS) $(SRC) -I $(INC)
+	$(CC) -c $(CFLAGS) $(SRC)
 
 $(BON_OBJS): $(BON)
-	$(CC) -c $(CFLAGS) $(BON) -I $(INC)
+	$(CC) -c $(CFLAGS) $(BON)
 
 bonus: $(BON_OBJS)
 	ar rcs $(NAME) $(BON_OBJS)

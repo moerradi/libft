@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int		is_inset(char c, char const *set)
+static int	is_inset(char c, char const *set)
 {
 	while (*set)
 	{
@@ -23,7 +23,7 @@ static int		is_inset(char c, char const *set)
 	return (0);
 }
 
-char			*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	char			*out;
 	unsigned int	start;
@@ -41,7 +41,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 		len--;
 	len++;
 	len -= start;
-	if (!(out = ft_substr(s1, start, len)))
+	out = ft_substr(s1, start, len);
+	if (!out)
 		return (NULL);
 	return (out);
 }

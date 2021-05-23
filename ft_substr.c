@@ -14,7 +14,7 @@
 
 static size_t	size_validate(char const *s, unsigned int start, size_t len)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < len && s[i + start])
@@ -22,7 +22,7 @@ static size_t	size_validate(char const *s, unsigned int start, size_t len)
 	return (i);
 }
 
-char			*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*out;
 	size_t	i;
@@ -30,13 +30,15 @@ char			*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s || (size_t)start > ft_strlen(s))
 	{
-		if (!(out = malloc(sizeof(char) * 1)))
+		out = malloc(sizeof(char) * 1);
+		if (!out)
 			return (NULL);
 		*out = '\0';
 		return (out);
 	}
 	size = size_validate(s, start, len);
-	if (!(out = malloc(sizeof(char) * (size + 1))))
+	out = malloc(sizeof(char) * (size + 1));
+	if (!out)
 		return (NULL);
 	i = 0;
 	while (i < size)
